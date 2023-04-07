@@ -14,8 +14,14 @@ const fetchAPI = async ({ query }: fetchParams) => {
     body: JSON.stringify({ query }),
   });
 
-  //turned json data to javascript object
-  const data = res.json();
+  //turned json data to javascript object and error
+  const { data, errors } = await res.json();
+
+  if (errors) {
+    // if errors true
+    //throw new error
+    throw new Error(errors[0].message ?? errors.message); //error[0] throws first array error message but if it's null show error.message
+  }
 
   return { data };
 };
