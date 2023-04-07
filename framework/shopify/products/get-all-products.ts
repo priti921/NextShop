@@ -22,3 +22,4 @@ const getAllProducts = async (): Promise<object[]> => {
 };
 
 export default getAllProducts;
+//testing the issue with git push
