@@ -15,7 +15,7 @@ const fetchAPI = async () => {
   return { data };
 };
 
-const getAllProducts = async (): Promise<number[]> => {
+const getAllProducts = async (): Promise<object[]> => {
   const products = await fetchAPI();
 
   return products.data;
