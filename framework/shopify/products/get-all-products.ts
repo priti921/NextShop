@@ -3,13 +3,13 @@ import fetchAPI from "../utils/fetch-api";
 import { ProductConnection } from "../schema";
 
 type ReturnType = {
-  product: ProductConnection;
+  products: ProductConnection;
 };
 
 const getAllProducts = async (): Promise<any> => {
   const { data } = await fetchAPI<ReturnType>({ query: getAllProductsQuery }); //added fetchAPI function return type
 
-  return data;
+  return data.products;
 };
 
 export default getAllProducts;
