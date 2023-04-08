@@ -1,7 +1,5 @@
-import getAllProductsQuery from "../utils/queries/get-all-products";
-import fetchAPI from "../utils/fetch-api";
+import { fetchAPI, normalizeProduct, getAllProductsQuery } from "../utils"; //instead of importing from multiple paths, importing functions from index utils file
 import { ProductConnection } from "../schema";
-import { normalizeProduct } from "../utils/normalize";
 import { Product } from "@common/types/product";
 
 type ReturnType = {
