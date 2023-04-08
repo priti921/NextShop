@@ -1,6 +1,6 @@
 //normalizing product details aka changing their data handles
 import { ImageEdge, Product as ShopifyProduct } from "../schema";
-import { Product } from "../../common/types/product";
+import { Product } from "@common/types/product";
 
 //normalizing product images   //param type specified as array type of ImageEdge
 const normalizeProductImage = ({ edges }: { edges: Array<ImageEdge> }) => {
