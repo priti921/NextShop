@@ -3,7 +3,7 @@
 import { ImageEdge, Product as ShopifyProduct } from "../schema";
 
 //normalizing product images   //param type specified as array type of ImageEdge
-function normalizeProductImage({ edges }: { edges: Array<ImageEdge> }) {
+const normalizeProductImage = ({ edges }: { edges: Array<ImageEdge> }) => {
   //mapping through edges => on each item in the array destructuring node => node then destructured into originalSrc(aliased to url) and the rest of properties
   return edges.map(({ node: { originalSrc: url, ...rest } }) => {
     return {
@@ -11,7 +11,7 @@ function normalizeProductImage({ edges }: { edges: Array<ImageEdge> }) {
       ...rest,
     };
   });
-}
+};
 
 //param type specified
 export function normalizeProduct(productNode: ShopifyProduct) {
