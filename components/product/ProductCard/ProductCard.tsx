@@ -17,7 +17,7 @@ const ProductCard: FC<Props> = ({ product }) => {
           <h3>
             <span>{product.name}</span>
           </h3>
-          <span>{product.description}</span>
+          <span>{product.path}</span>
         </div>
         {product.images && (
           <Image
