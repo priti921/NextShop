@@ -1,6 +1,7 @@
 import Head from "next/head";
 import type { InferGetStaticPropsType } from "next";
 import getAllProducts from "@framework/products/get-all-products";
+import { ProductCard } from "@components/product";
 
 export async function getStaticProps() {
   const products = await getAllProducts();
@@ -18,14 +19,15 @@ export default function Home({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <div>
-      {/* <Head>
+      <Head>
         <title>NextShop </title>
         <meta name="description" content="shopify clothing shop" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
-      </Head> */}
-      {/* <main></main> */}
-      {JSON.stringify(products)}
+      </Head>
+      {products.map((product) => (
+        <ProductCard key={product.id} product={product} />
+      ))}
     </div>
   );
 }

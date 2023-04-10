@@ -9,9 +9,7 @@ interface LayoutProps {
 const Layout: FC<LayoutProps> = ({ children }) => {
   return (
     <div className={style.root}>
-      <main style={{ color: "var(--primary)" }} className="fit">
-        {children}
-      </main>
+      <main className="fit">{children}</main>
     </div>
   );
 };
