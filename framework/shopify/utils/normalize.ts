@@ -15,7 +15,7 @@ const normalizeProductImage = ({ edges }: { edges: Array<ImageEdge> }) => {
 
 //param type specified
 export function normalizeProduct(productNode: ShopifyProduct): Product {
-  //destructuring product
+  //destructuring ShopifyProduct
   const {
     id,
     title: name,
