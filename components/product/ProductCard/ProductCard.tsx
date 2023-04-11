@@ -26,6 +26,7 @@ const ProductCard: FC<Props> = ({ product }) => {
             height={540}
             width={540}
             quality="85"
+            layout="responsive"
           />
         )}
       </div>
