@@ -14,6 +14,7 @@ const ProductCard: FC<Props> = ({ product }) => {
   return (
     <Link href={`/products/${product.slug}`}>
       <div className={style.root}>
+        <div className={style.productBg}></div>
         <div className={style.productTag}>
           <h3 className={style.productTitle}>
             <span>{product.name}</span>
@@ -22,6 +23,7 @@ const ProductCard: FC<Props> = ({ product }) => {
         </div>
         {product.images && (
           <Image
+            className={style.productImage}
             alt={product.name ?? "product image"}
             src={product.images[0].url ?? placeholderImage}
             height={540}
