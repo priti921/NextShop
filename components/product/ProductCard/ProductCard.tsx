@@ -7,7 +7,7 @@ interface Props {
   product: Product;
 }
 
-import placeholderImage from "./placeholderImage.png";
+import placeholderImage from "../../../public/product-image-placeholder.svg";
 
 const ProductCard: FC<Props> = ({ product }) => {
   return (
@@ -17,16 +17,15 @@ const ProductCard: FC<Props> = ({ product }) => {
           <h3>
             <span>{product.name}</span>
           </h3>
-          <span>{product.path}</span>
+          <span>{product.name}</span>
         </div>
         {product.images && (
           <Image
-            src={placeholderImage}
             alt={product.name ?? "product image"}
+            src={product.images[0].url ?? placeholderImage}
             height={540}
             width={540}
             quality="85"
-            layout="responsive"
           />
         )}
       </div>
