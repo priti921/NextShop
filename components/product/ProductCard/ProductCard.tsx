@@ -6,35 +6,42 @@ import style from "./Product.module.css";
 
 interface Props {
   product: Product;
+  variant?: "simple" | "slim";
 }
 
 import placeholderImage from "../../../public/product-image-placeholder.svg";
 
-const ProductCard: FC<Props> = ({ product }) => {
+const ProductCard: FC<Props> = ({ product, variant = "simple" }) => {
   return (
     <Link href={`/products/${product.slug}`}>
-      <div className={style.root}>
-        <div className={style.productBg}></div>
-        <div className={style.productTag}>
-          <h3 className={style.productTitle}>
-            <span>{product.name}</span>
-          </h3>
-          <span className={style.productPrice}>
-            {product.price.value} {product.price.currencyCode}
-          </span>
-        </div>
-        {product.images && (
-          <Image
-            className={style.productImage}
-            alt={product.name ?? "product image"}
-            src={product.images[0].url ?? placeholderImage}
-            height={540}
-            width={540}
-            quality="85"
-            layout="responsive"
-          />
-        )}
-      </div>
+      {variant == "slim" ? (
+        <>SLIM PRODUCT</>
+      ) : (
+        <>
+          <div className={style.root}>
+            <div className={style.productBg}></div>
+            <div className={style.productTag}>
+              <h3 className={style.productTitle}>
+                <span>{product.name}</span>
+              </h3>
+              <span className={style.productPrice}>
+                {product.price.value} {product.price.currencyCode}
+              </span>
+            </div>
+            {product.images && (
+              <Image
+                className={style.productImage}
+                alt={product.name ?? "product image"}
+                src={product.images[0].url ?? placeholderImage}
+                height={540}
+                width={540}
+                quality="85"
+                layout="responsive"
+              />
+            )}
+          </div>
+        </>
+      )}
     </Link>
   );
 };

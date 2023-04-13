@@ -37,7 +37,7 @@ export default function Home({
       />
       <Marquee>
         {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard key={product.id} product={product} variant="slim" />
         ))}
       </Marquee>
     </div>
