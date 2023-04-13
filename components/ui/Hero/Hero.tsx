@@ -12,7 +12,7 @@ const Hero: FC<{ headline: string; description: string }> = ({
       <Container>
         <div className={style.root}>
           <h2 className={style.headline}>{headline}</h2>
-          <div>
+          <div className="flex-1 max-w-xl">
             <p className={style.description}>{description}</p>
             <Link className={style.link} href="/">
               Read it here
