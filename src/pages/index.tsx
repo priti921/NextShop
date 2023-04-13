@@ -2,7 +2,7 @@ import Head from "next/head";
 import type { InferGetStaticPropsType } from "next";
 import getAllProducts from "@framework/products/get-all-products";
 import { ProductCard } from "@components/product";
-import { Grid, Hero } from "@components/ui";
+import { Grid, Hero, Marquee } from "@components/ui";
 
 export async function getStaticProps() {
   const products = await getAllProducts();
@@ -35,6 +35,11 @@ export default function Home({
         headline="HEADLINE"
         description="descriptions of products available for purchase in the shop and the shop itself   are available in the shop itself and    the same   "
       />
+      <Marquee>
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </Marquee>
     </div>
   );
 }
