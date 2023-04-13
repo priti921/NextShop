@@ -5,7 +5,7 @@ export interface ProductImage {
 
 export interface ProductPrice {
   value: number;
-  currencyCode: "USD" | "EUR" | string
+  currencyCode: "USD" | "EUR" | string;
 }
 export interface Product {
   id: string;
