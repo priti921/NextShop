@@ -26,7 +26,7 @@ export default function Home({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Grid>
+      <Grid layout="A">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
@@ -35,7 +35,17 @@ export default function Home({
         headline="HEADLINE"
         description="descriptions of products available for purchase in the shop and the shop itself   are available in the shop itself and    the same   "
       />
-      <Marquee>
+      <Marquee variant="secondary">
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} variant="slim" />
+        ))}
+      </Marquee>
+      <Grid layout="B">
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </Grid>
+      <Marquee variant="primary">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} variant="slim" />
         ))}

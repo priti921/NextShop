@@ -49,5 +49,30 @@
 }
 
 .layoutB {
-  color: blue;
+  & > *:nth-child(6n + 2),
+  & > *:nth-child(6n + 4) {
+    @screen lg {
+      @apply col-span-2 row-span-2;
+    }
+  }
+
+  /* apply colour based on postion */
+  & > *:nth-child(6n + 1) {
+    @apply bg-violet;
+  }
+  & > *:nth-child(6n + 2) {
+    background-color: #212529;
+  }
+
+  & > *:nth-child(6n + 3) {
+    @apply bg-pink;
+  }
+
+  & > *:nth-child(6n + 5) {
+    @apply bg-blue;
+  }
+
+  & > *:nth-child(6n + 6) {
+    @apply bg-cyan;
+  }
 }

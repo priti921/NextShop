@@ -12,3 +12,11 @@
     position: initial;
   }
 }
+
+.primary {
+  @apply bg-black;
+}
+
+.secondary {
+  @apply bg-white;
+}
