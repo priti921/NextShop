@@ -15,5 +15,5 @@
 }
 
 .nav {
-  @apply ml-auto space-x-6;
+  @apply ml-6 space-x-6;
 }
