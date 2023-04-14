@@ -1,0 +1,19 @@
+.root {
+  @apply flex flex-row md:py-6 items-center;
+}
+
+.link {
+  @apply text-accents-6 leading-6 font-medium transition;
+
+  &:hover {
+    @apply text-accents-9;
+  }
+}
+
+.logo {
+  @apply text-2xl font-bold;
+}
+
+.nav {
+  @apply ml-auto space-x-6;
+}
