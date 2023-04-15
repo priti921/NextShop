@@ -1,7 +1,7 @@
 import { Layout } from "@components/common";
 import type { AppProps } from "next/app";
 import "../../assets/main.css";
-import { UIprovider } from "@components/ui/contest";
+import { UIprovider } from "@components/ui/context";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (

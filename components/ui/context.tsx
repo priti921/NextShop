@@ -1,17 +1,20 @@
-import { createContext, FC, useContext } from "react";
+import { createContext, FC, useContext, useState } from "react";
 
 //creating context with a default state
-const UIcontext = createContext<{ [key: string]: string }>({
+const UIcontext = createContext<{ [key: string]: any }>({
   uiState: "defaultValue",
 });
 
 //creating provider component to wrap it around layout for central state management && also added state value
 export const UIprovider: FC<{ children: any }> = ({ children }) => {
-  return (
-    <UIcontext.Provider value={{ uiState: "someState" }}>
-      {children}
-    </UIcontext.Provider>
-  );
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
+
+  const uiState = {
+    isSidebarOpen,
+    setSidebarOpen,
+  };
+
+  return <UIcontext.Provider value={uiState}>{children}</UIcontext.Provider>;
 };
 
 //using the context state
