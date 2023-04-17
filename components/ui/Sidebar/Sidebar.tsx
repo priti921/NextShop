@@ -1,4 +1,9 @@
-import { FC } from "react";
+import { FC, MutableRefObject, useEffect, useRef } from "react";
+import {
+  enableBodyScroll,
+  disableBodyScroll,
+  clearAllBodyScrollLocks,
+} from "body-scroll-lock";
 
 interface Props {
   children: any;
@@ -7,10 +12,27 @@ interface Props {
 }
 
 const Sidebar: FC<Props> = ({ children, isOpen, onClose }) => {
+  const ref = useRef() as MutableRefObject<HTMLDivElement>; //calling useRef with a generic type
+
+  useEffect(() => {
+    //disable or enable body scroll depending on isOpen state
+    if (ref.current) {
+      if (isOpen) {
+        disableBodyScroll(ref.current);
+      } else {
+        enableBodyScroll(ref.current);
+      }
+    }
+    //clears all the locks
+    return () => {
+      clearAllBodyScrollLocks();
+    };
+  }, [isOpen]);
+
   return (
     <>
       {isOpen ? (
-        <div className="fixed inset-0 overflow-hidden h-full z-50">
+        <div ref={ref} className="fixed inset-0 overflow-hidden h-full z-50">
           <div className="absolute inset-0 overflow-hidden">
             <div
               onClick={onClose}
