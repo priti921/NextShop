@@ -3,9 +3,11 @@ import type { InferGetStaticPropsType } from "next";
 import getAllProducts from "@framework/products/get-all-products";
 import { ProductCard } from "@components/product";
 import { Grid, Hero, Marquee } from "@components/ui";
+import { getConfig } from "@framework/api/config";
 
 export async function getStaticProps() {
-  const products = await getAllProducts();
+  const config = getConfig();
+  const products = await getAllProducts(config);
 
   return {
     props: {

@@ -1,13 +1,17 @@
-import { fetchAPI, normalizeProduct, getAllProductsQuery } from "../utils"; //instead of importing from multiple paths, importing functions from index utils file
+import { normalizeProduct, getAllProductsQuery } from "../utils"; //instead of importing from multiple paths, importing functions from index utils file
 import { ProductConnection } from "../schema";
 import { Product } from "@common/types/product";
+import { ApiConfig } from "@common/types/api";
 
 type ReturnType = {
   products: ProductConnection;
 };
 
-const getAllProducts = async (): Promise<Product[]> => {
-  const { data } = await fetchAPI<ReturnType>({ query: getAllProductsQuery }); //added fetchAPI function return type
+const getAllProducts = async (config: ApiConfig): Promise<Product[]> => {
+  const { data } = await config.fetch<ReturnType>({
+    url: config.apiUrl,
+    query: getAllProductsQuery,
+  }); //added fetchAPI function return type
 
   //mapping through edges to get products, destructured edge into { node: product} alias
   const products =
