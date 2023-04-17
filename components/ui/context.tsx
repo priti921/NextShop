@@ -1,4 +1,4 @@
-import { createContext, FC, useContext, useReducer } from "react";
+import { createContext, FC, useContext, useMemo, useReducer } from "react";
 
 // -- DEFINING TYPES --
 //defining types for context state and modifiers
@@ -51,11 +51,13 @@ export const UIprovider: FC<{ children: any }> = ({ children }) => {
   const openSidebar = () => dispatch({ type: "OPEN_SIDEBAR" });
   const closeSidebar = () => dispatch({ type: "CLOSE_SIDEBAR" });
 
-  const value = {
-    ...state,
-    openSidebar,
-    closeSidebar,
-  };
+  const value = useMemo(() => {
+    return {
+      ...state,
+      openSidebar,
+      closeSidebar,
+    };
+  }, [state.isSidebarOpen]);
 
   return <UIcontext.Provider value={value}>{children}</UIcontext.Provider>;
 };
