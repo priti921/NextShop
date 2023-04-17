@@ -7,11 +7,11 @@ import { useUI } from "@components/ui/context";
 
 //Fixed 'Property 'children' does not exist on type {}' error by defining 'children' prop in the prop interface explicitly.
 const Layout: FC<{ children: ReactNode }> = ({ children }) => {
-  const ui = useUI();
+  const { isSidebarOpen, closeSidebar } = useUI();
   return (
     <div className={style.root}>
       <Navbar />
-      <Sidebar isOpen={ui.isSidebarOpen}>
+      <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar}>
         {" "}
         {/* passing state to sidebar */}
         <CartSidebar />
