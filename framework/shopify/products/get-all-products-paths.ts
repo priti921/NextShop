@@ -7,7 +7,7 @@ type ReturnType = {
   products: Pick<Product, "slug">[];
 };
 
-const getAllProductPaths = async (config: ApiConfig): Promise<ReturnType> => {
+const getAllProductsPaths = async (config: ApiConfig): Promise<ReturnType> => {
   const { data } = await config.fetch<{ products: ProductConnection }>({
     query: getAllProductsPathsQuery,
     url: config.apiUrl,
@@ -22,4 +22,4 @@ const getAllProductPaths = async (config: ApiConfig): Promise<ReturnType> => {
   return { products };
 };
 
-export default getAllProductPaths;
+export default getAllProductsPaths;
