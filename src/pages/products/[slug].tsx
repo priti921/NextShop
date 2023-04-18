@@ -1,4 +1,6 @@
 import { Layout } from "@components/common";
+import { getConfig } from "@framework/api/config";
+import getAllProductPaths from "@framework/products/get-all-products-paths";
 import {
   GetStaticPropsContext,
   InferGetStaticPropsType,
@@ -6,12 +8,10 @@ import {
 } from "next";
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  const config = getConfig();
+  const { products } = await getAllProductPaths(config);
   return {
-    paths: [
-      { params: { slug: "cool-hat" } },
-      { params: { slug: "lightweight-jacket" } },
-      { params: { slug: "t-shirt" } },
-    ],
+    paths: products.map((product) => ({ params: { slug: product.slug } })),
     fallback: false,
   };
 };
