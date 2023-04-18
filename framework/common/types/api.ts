@@ -1,6 +1,7 @@
 export type ApiFetcherOptions = {
   url: string;
   query: string;
+  variables?: string;
 };
 
 export type ApiFetcherResults<T> = {

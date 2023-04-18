@@ -1,12 +1,9 @@
 import { ApiFetcherOptions, ApiFetcherResults } from "@common/types/api";
 
-type fetcherParams = {
-  query: string;
-};
-
 const fetchAPI = async <T>({
   url,
   query,
+  variables,
 }: ApiFetcherOptions): Promise<ApiFetcherResults<T>> => {
   //fetching the data
   const res = await fetch(url, {
@@ -14,7 +11,7 @@ const fetchAPI = async <T>({
     headers: {
       "content-type": "application/json",
     },
-    body: JSON.stringify({ query }),
+    body: JSON.stringify({ query, variables }),
   });
 
   //turned json data to javascript object and error

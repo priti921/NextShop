@@ -20,7 +20,10 @@ export const getStaticProps = async ({
   params,
 }: GetStaticPropsContext<{ slug: string }>) => {
   const config = getConfig();
-  const { product } = await getProduct(config);
+  const { product } = await getProduct({
+    config,
+    variables: { slug: params?.slug },
+  }); //passing two options 1. api config that contains the url and fetch function 2. variables that contains the slug
   return {
     props: {
       product,
