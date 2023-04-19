@@ -1,10 +1,5 @@
 //normalizing product details aka changing their data handles
-import {
-  CurrencyCode,
-  ImageEdge,
-  MoneyV2,
-  Product as ShopifyProduct,
-} from "../schema";
+import { ImageEdge, MoneyV2, Product as ShopifyProduct } from "../schema";
 import { Product } from "@common/types/product";
 
 //normalizing product images   //param type specified as array type of ImageEdge

@@ -2,6 +2,7 @@ import { Heart } from "@components/icons";
 import { Layout } from "@components/common";
 import { Container } from "@components/ui";
 
+//--WISHLIST PAGE//
 export default function Wishlist() {
   const isEmpty = true;
 
@@ -9,7 +10,9 @@ export default function Wishlist() {
     <Container>
       <div className="mt-3 mb-20 h-screen">
         <div className="group flex flex-col">
+          {/* renders wishlist cards based on wishlist state */}
           {isEmpty ? (
+            // if wishlist is empty, render this
             <div className="flex-1 px-12 py-24 flex flex-col justify-center items-center">
               <span className="border border-dashed border-secondary flex items-center justify-center w-16 h-16 bg-primary p-12 rounded-lg text-primary">
                 <Heart className="absolute" />
@@ -22,6 +25,7 @@ export default function Wishlist() {
               </p>
             </div>
           ) : (
+            //if wishlist is gs are present, render this
             <h1>Wishlist cards...</h1>
           )}
         </div>
@@ -30,4 +34,4 @@ export default function Wishlist() {
   );
 }
 
-Wishlist.Layout = Layout;
+Wishlist.Layout = Layout; //adds layout component

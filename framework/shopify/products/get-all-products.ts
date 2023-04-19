@@ -8,6 +8,7 @@ type ReturnType = {
 };
 
 const getAllProducts = async (config: ApiConfig): Promise<Product[]> => {
+  //fetches all products from shopify
   const { data } = await config.fetch<ReturnType>({
     url: config.apiUrl,
     query: getAllProductsQuery,

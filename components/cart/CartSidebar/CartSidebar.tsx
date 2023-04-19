@@ -5,20 +5,23 @@ import cn from "classnames";
 import { useUI } from "@components/ui/context";
 
 const CartSidebar: FC = () => {
+  //getting close sidebar function from useUI context
   const { closeSidebar } = useUI();
-  const isEmpty = true;
+  const isEmpty = true; //cart state
 
+  //render style on cart state
   const rootClass = cn("h-full flex flex-col", {
     "bg-secondary text-secondary": isEmpty,
   });
 
   return (
     <div className={rootClass}>
+      {/* cart close button section */}
       <header className="px-4 pt-6 pb-4 sm:px-6">
         <div className="flex items-start justify-between space-x-3">
           <div className="h-7 flex items-center">
             <button
-              onClick={closeSidebar}
+              onClick={closeSidebar} //closes on click
               className="hover:text-gray-500 transition ease-in-out duration-150"
             >
               <Cross className="h-6 w-6" />
@@ -27,7 +30,9 @@ const CartSidebar: FC = () => {
         </div>
       </header>
 
+      {/* renders cart based on cart state */}
       {isEmpty ? (
+        // -- IF CART IS EMPTY--
         <div className="flex-1 px-4 flex flex-col justify-center items-center">
           <span className="border border-dashed border-primary rounded-full flex items-center justify-center w-16 h-16 p-12 bg-secondary text-secondary">
             <Bag className="absolute" />
@@ -40,6 +45,7 @@ const CartSidebar: FC = () => {
           </p>
         </div>
       ) : (
+        // -- IF CART HAS ITEMS --
         <>
           <div className="px-4 sm:px-6 flex-1">
             <h2 className="pt-1 pb-4 text-2xl leading-7 font-bold text-base tracking-wide inline-block">
@@ -70,6 +76,7 @@ const CartSidebar: FC = () => {
                 <span>120$</span>
               </div>
             </div>
+            {/* checkout button */}
             <button
               onClick={() => {
                 alert("Going to checkout!");

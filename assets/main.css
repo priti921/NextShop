@@ -5,6 +5,7 @@
 @tailwind utilities;
 
 @components {
+  /* minimum height of children components of layout */
   .fit {
     min-height: calc(100vh-88px);
   }

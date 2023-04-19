@@ -7,23 +7,32 @@ import {
   GetStaticPaths,
 } from "next";
 
+//gets all the static paths from product
 export const getStaticPaths: GetStaticPaths = async () => {
   const config = getConfig();
-  const { products } = await getAllProductsPaths(config);
+  const { products } = await getAllProductsPaths(config); //fetching product paths
+
   return {
-    paths: products.map((product) => ({ params: { slug: product.slug } })),
-    fallback: false,
+    paths: products.map((product) => ({ params: { slug: product.slug } })), //mapping through returned products and for each product returning params that contains slug
+    fallback: false, //                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   returning slugs in different structure
   };
 };
 
+//gets all the static props
 export const getStaticProps = async ({
-  params,
+  params, //takes destructured params property
 }: GetStaticPropsContext<{ slug: string }>) => {
+  //                       ^^^^^^ params contains destructed slug property of type string
+
   const config = getConfig();
+
   const { product } = await getProduct({
+    //passing two options destructured 1. api config that contains the url and fetch function 2. variables that contains the slug
     config,
-    variables: { slug: params?.slug },
-  }); //passing two options 1. api config that contains the url and fetch function 2. variables that contains the slug
+    variables: { slug: params?.slug }, // params on be string or undefined
+    //^ optional arg
+  });
+
   return {
     props: {
       product,

@@ -25,6 +25,7 @@ const Navbar: FC = () => {
             <span className={style.link}>Shoes</span>
           </Link>
         </nav>
+        {/* user nav for cart and wishlist */}
         <div className="flex flex-1 justify-end space-x-8">
           <Usernav />
         </div>
