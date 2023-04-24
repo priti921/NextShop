@@ -47,8 +47,6 @@ const normalizeProductOption = ({
     }),
   };
 
-  console.log(normalize);
-
   return normalize;
 };
 
@@ -60,7 +58,7 @@ const normalizeProductVariants = ({ edges }: ProductVariantConnection) => {
       return {
         id,
         name: title,
-        sku: sku ?? id,
+        sku: sku || id,
         price: +priceV2.amount,
         listPrice: +compareAtPriceV2?.amount,
         requiresShipping: true,
