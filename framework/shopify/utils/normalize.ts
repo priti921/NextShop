@@ -26,9 +26,29 @@ const normalizedProductPrice = ({ currencyCode, amount }: MoneyV2) => ({
 });
 
 //normalizing product options
-const normalizeProductOption = ({ id, name, values }: ProductOption) => {
-  console.log(id, name, values);
-  return {};
+const normalizeProductOption = ({
+  id,
+  values,
+  name: displayName,
+}: ProductOption) => {
+  const normalize = {
+    id,
+    displayName,
+    values: values.map((value) => {
+      //adding label property to each value
+      let output: any = { label: value };
+
+      //adding hexColor property if value has colour property
+      if (displayName.match(/colo?r/gi))
+        output = { ...output, hexColor: value };
+
+      return output;
+    }),
+  };
+
+  console.log(normalize);
+
+  return normalize;
 };
 
 //param type specified
