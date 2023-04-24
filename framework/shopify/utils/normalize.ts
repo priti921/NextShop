@@ -3,6 +3,7 @@ import {
   ImageEdge,
   MoneyV2,
   ProductOption,
+  ProductVariantConnection,
   Product as ShopifyProduct,
 } from "../schema";
 import { Product } from "@common/types/product";
@@ -51,6 +52,23 @@ const normalizeProductOption = ({
   return normalize;
 };
 
+const normalizeProductVariants = ({ edges }: ProductVariantConnection) => {
+  return edges.map(
+    ({
+      node: { id, sku, selectedOptions, title, priceV2, compareAtPriceV2 },
+    }) => {
+      return {
+        id,
+        name: title,
+        sku: sku ?? id,
+        price: +priceV2.amount,
+        listPrice: +compareAtPriceV2?.amount,
+        requiresShipping: true,
+      };
+    }
+  );
+};
+
 //param type specified
 export function normalizeProduct(productNode: ShopifyProduct): Product {
   //destructuring ShopifyProduct
@@ -63,6 +81,7 @@ export function normalizeProduct(productNode: ShopifyProduct): Product {
     images: ImageConnection,
     priceRange,
     options,
+    variants,
     ...rest
   } = productNode;
 
@@ -81,6 +100,7 @@ export function normalizeProduct(productNode: ShopifyProduct): Product {
           .filter((o) => o.name !== "Tittle")
           .map((o) => normalizeProductOption(o))
       : [],
+    variants: variants ? normalizeProductVariants(variants) : [],
     ...rest,
   };
 
