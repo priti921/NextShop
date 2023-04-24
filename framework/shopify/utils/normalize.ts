@@ -1,5 +1,10 @@
 //normalizing product details aka changing their data handles
-import { ImageEdge, MoneyV2, Product as ShopifyProduct } from "../schema";
+import {
+  ImageEdge,
+  MoneyV2,
+  ProductOption,
+  Product as ShopifyProduct,
+} from "../schema";
 import { Product } from "@common/types/product";
 
 //normalizing product images   //param type specified as array type of ImageEdge
@@ -13,11 +18,19 @@ const normalizeProductImage = ({ edges }: { edges: Array<ImageEdge> }) => {
   });
 };
 
+//normalizing product price
 const normalizedProductPrice = ({ currencyCode, amount }: MoneyV2) => ({
   // turns into number
   value: +amount,
   currencyCode,
 });
+
+//normalizing product options
+const normalizeProductOption = ({ id, name, values }: ProductOption) => {
+  console.log(id, name, values);
+  return {};
+};
+
 //param type specified
 export function normalizeProduct(productNode: ShopifyProduct): Product {
   //destructuring ShopifyProduct
@@ -29,6 +42,7 @@ export function normalizeProduct(productNode: ShopifyProduct): Product {
     description,
     images: ImageConnection,
     priceRange,
+    options,
     ...rest
   } = productNode;
 
@@ -42,6 +56,11 @@ export function normalizeProduct(productNode: ShopifyProduct): Product {
     slug: handle.replace(/^\/+|\/+$/g, ""), //replace with slug, remove leading and ending slashes
     images: normalizeProductImage(ImageConnection),
     price: normalizedProductPrice(priceRange.minVariantPrice),
+    options: options
+      ? options
+          .filter((o) => o.name !== "Tittle")
+          .map((o) => normalizeProductOption(o))
+      : [],
     ...rest,
   };
 

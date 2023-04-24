@@ -45,11 +45,8 @@ export default function ProductSlug({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
-      <div>{product?.name}</div>
-      <div>{product?.slug}</div>
-      <div>{product?.description}</div>
-      <div>{product?.images[0].url}</div>
-      <div>{product?.price.value}</div>
+      {/* testing product details */}
+      {JSON.stringify(product)}
     </>
   );
 }
