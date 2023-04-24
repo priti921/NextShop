@@ -6,6 +6,7 @@ import {
   InferGetStaticPropsType,
   GetStaticPaths,
 } from "next";
+import { ProductView } from "@components/product";
 
 //gets all the static paths from product
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -43,12 +44,7 @@ export const getStaticProps = async ({
 export default function ProductSlug({
   product,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  return (
-    <>
-      {/* testing product details */}
-      {JSON.stringify(product)}
-    </>
-  );
+  return <>{product && <ProductView product={product} />}</>;
 }
 
 ProductSlug.Layout = Layout;
