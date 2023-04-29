@@ -23,7 +23,7 @@
   background-image: url("/cursor-left.png");
 
   @screen md {
-    @apply left-6;
+    @apply left-12;
   }
 }
 
@@ -32,7 +32,7 @@
   background-image: url("/cursor-right.png");
 
   @screen md {
-    @apply right-6;
+    @apply -right-4;
   }
 }
 

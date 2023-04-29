@@ -7,26 +7,32 @@ import React, {
 } from "react";
 import style from "./ProductSlider.module.css";
 import { useKeenSlider } from "keen-slider/react";
+import cn from "classnames";
 
 type Prop = {
   children: ReactNode;
 };
 
 const ProductSlider: FC<Prop> = ({ children }) => {
-  const [sliderRef, _] = useKeenSlider({
+  const [sliderRef, slider] = useKeenSlider<HTMLDivElement>({
     initial: 0,
     loop: true,
-    slideChanged(s) {
-      console.log("changing to slide");
-    },
+    slideChanged(s) {},
   });
+  console.log(typeof slider);
 
   return (
     <div className={style.root}>
-      <div
-        ref={sliderRef as any}
-        className="keen-slider h-full transition-opacity"
-      >
+      <div ref={sliderRef} className="keen-slider h-full transition-opacity">
+        <button
+          onClick={() => slider.current?.prev()}
+          className={cn(style.leftControl, style.control)}
+        />
+        <button
+          onClick={() => slider.current?.next()}
+          className={cn(style.rightControl, style.control)}
+        />
+
         {/* loops through each children and if the child is valid, clones the child to be able to pass className */}
         {Children.map(children, (child) => {
           if (isValidElement(child)) {
