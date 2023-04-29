@@ -1,11 +1,11 @@
 import cn from "classnames";
 import { FC, useState } from "react";
 import s from "./ProductView.module.css";
-import { Button, Container } from "@components/ui";
+import { Container, Button } from "@components/ui";
 import Image from "next/image";
 import { Product } from "@common/types/product";
 import { ProductSlider, Swatch } from "@components/product";
-import placeholderImage from "../../../public/product-image-placeholder.svg";
+
 interface Props {
   product: Product;
 }
@@ -17,9 +17,8 @@ type Choices = {
 };
 
 const ProductView: FC<Props> = ({ product }) => {
-  const [choice, setChoice] = useState<Choices>({});
+  const [choices, setChoices] = useState<Choices>({});
 
-  console.log(choice);
   return (
     <Container>
       <div className={cn(s.root, "fit", "mb-5")}>
@@ -38,7 +37,7 @@ const ProductView: FC<Props> = ({ product }) => {
                 <Image
                   className={s.img}
                   src={image.url}
-                  alt={image.alt ?? image.url}
+                  alt={image.url}
                   width={1050}
                   height={1050}
                   quality="85"
@@ -53,21 +52,27 @@ const ProductView: FC<Props> = ({ product }) => {
               <div key={option.id} className="pb-4">
                 <h2 className="uppercase font-medium">{option.displayName}</h2>
                 <div className="flex flex-row py-4">
-                  {option.values.map((optValue) => (
-                    <Swatch
-                      key={`${option.id}-${optValue.label}`}
-                      label={optValue.label}
-                      color={optValue.hexColor}
-                      variant={option.displayName}
-                      onClick={() => {
-                        setChoice({
-                          ...choice,
-                          [option.displayName.toLowerCase()]:
-                            optValue.label.toLocaleLowerCase(),
-                        });
-                      }}
-                    />
-                  ))}
+                  {option.values.map((optValue) => {
+                    // get active choice from state
+                    const activeChoice =
+                      choices[option.displayName.toLowerCase()];
+                    return (
+                      <Swatch
+                        key={`${option.id}-${optValue.label}`}
+                        label={optValue.label}
+                        color={optValue.hexColor}
+                        variant={option.displayName}
+                        active={optValue.label.toLowerCase() === activeChoice}
+                        onClick={() => {
+                          setChoices({
+                            ...choices,
+                            [option.displayName.toLowerCase()]:
+                              optValue.label.toLowerCase(),
+                          });
+                        }}
+                      />
+                    );
+                  })}
                 </div>
               </div>
             ))}
