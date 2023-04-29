@@ -2,6 +2,7 @@ import { Layout } from "@components/common";
 import type { AppProps } from "next/app";
 import "../../assets/main.css";
 import { UIprovider } from "@components/ui/context";
+import "keen-slider/keen-slider.min.css";
 
 //wrapping provider and layout around the whole app
 export default function App({ Component, pageProps }: AppProps) {
