@@ -16,6 +16,7 @@ const Swatch: FC<Props> = ({ color, label, variant, active, ...rest }) => {
   label = label?.toLowerCase();
   variant = variant?.toLocaleLowerCase();
 
+  //sets the colour if props return true
   const rootClassName = cn(s.root, {
     [s.active]: active,
     [s.color]: color,
@@ -25,15 +26,18 @@ const Swatch: FC<Props> = ({ color, label, variant, active, ...rest }) => {
 
   return (
     <button
+      //sets the background color of button based on color passed
       style={color ? { backgroundColor: color } : {}}
       className={rootClassName}
       {...rest}
     >
+      {/* if active then sets check to true */}
       {variant === "color" && active && (
         <span>
           <Check />
         </span>
       )}
+      {/* if it's a size varianet then add label or else no label */}
       {variant === "size" ? label : null}
     </button>
   );

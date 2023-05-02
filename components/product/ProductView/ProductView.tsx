@@ -16,8 +16,10 @@ const ProductView: FC<Props> = ({ product }) => {
   const [choices, setChoices] = useState<Choices>({});
   const { openSidebar } = useUI();
 
+  //get variant if it exists in the product
   const variant = getVariant(product, choices);
 
+  //adds to cart on call
   const addToCart = () => {
     try {
       const item = {
