@@ -7,6 +7,7 @@ import { Product } from "@common/types/product";
 import { ProductSlider, Swatch } from "@components/product";
 import { Choices, getVariant } from "../helpers";
 import { useUI } from "@components/ui/context";
+import useAddItem from "@framework/cart/use-all-item";
 
 interface Props {
   product: Product;
@@ -19,6 +20,9 @@ const ProductView: FC<Props> = ({ product }) => {
   //get variant if it exists in the product
   const variant = getVariant(product, choices);
 
+  //calling the hook to get the function(can be named anything)
+  const addItem = useAddItem();
+
   //adds to cart on call
   const addToCart = () => {
     try {
@@ -27,8 +31,9 @@ const ProductView: FC<Props> = ({ product }) => {
         variantId: variant?.id,
         variantOptions: variant?.options,
       };
-
-      alert(JSON.stringify(item));
+      //passing item data
+      const log = addItem(item);
+      alert(JSON.stringify(log));
       openSidebar();
     } catch {}
   };
