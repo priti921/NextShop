@@ -8,6 +8,7 @@ import { ProductSlider, Swatch } from "@components/product";
 import { Choices, getVariant } from "../helpers";
 import { useUI } from "@components/ui/context";
 import useAddItem from "@framework/cart/use-all-item";
+import { useApiProvider } from "@common";
 
 interface Props {
   product: Product;
@@ -16,6 +17,9 @@ interface Props {
 const ProductView: FC<Props> = ({ product }) => {
   const [choices, setChoices] = useState<Choices>({});
   const { openSidebar } = useUI();
+
+  const api = useApiProvider();
+  console.log(api);
 
   //get variant if it exists in the product
   const variant = getVariant(product, choices);
