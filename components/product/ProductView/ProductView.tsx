@@ -8,7 +8,7 @@ import { ProductSlider, Swatch } from "@components/product";
 import { Choices, getVariant } from "../helpers";
 import { useUI } from "@components/ui/context";
 import useAddItem from "@framework/cart/use-all-item";
-import { useApiProvider } from "@common";
+import { useApiProvider } from "@framework";
 
 interface Props {
   product: Product;

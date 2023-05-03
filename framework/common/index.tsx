@@ -1,20 +1,15 @@
-import { getConfig } from "@framework/api/config";
 import { ReactNode, createContext, useContext } from "react";
+import { ApiConfig } from "./types/api";
 
 interface ApiProviderProps {
   children: ReactNode | ReactNode[];
+  config: ApiConfig | { testValue: string };
 }
-
-const config = getConfig();
 
 export const ApiContext = createContext({});
 
-export const ApiProvider = ({ children }: ApiProviderProps) => {
-  return (
-    <ApiContext.Provider value={{ ...config, testValue: "test" }}>
-      {children}
-    </ApiContext.Provider>
-  );
+export const ApiProvider = ({ children, config }: ApiProviderProps) => {
+  return <ApiContext.Provider value={config}>{children}</ApiContext.Provider>;
 };
 
 export const useApiProvider = () => {
