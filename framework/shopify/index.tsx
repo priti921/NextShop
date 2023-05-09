@@ -1,3 +1,4 @@
+//instanciation of coreApiProvider to be used in productView
 import {
   ApiProvider as CoreApiProvider,
   useApiProvider as useCoreApiProvider,
