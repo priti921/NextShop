@@ -1,18 +1,28 @@
 //core api context
-import { ReactNode, createContext, useContext } from "react";
-import { ApiConfig } from "./types/api";
+import { ReactNode, createContext, useContext, useMemo } from "react";
+import { ApiConfig, ApiHooks } from "./types/api";
 
 interface ApiProviderProps {
   children: ReactNode | ReactNode[];
-  config: ApiConfig | { testValue: string };
+  config: ApiConfig;
+  hooks: ApiHooks;
 }
 
 //context init
 export const ApiContext = createContext({});
 
 //provider to wrap around
-export const ApiProvider = ({ children, config }: ApiProviderProps) => {
-  return <ApiContext.Provider value={config}>{children}</ApiContext.Provider>;
+export const ApiProvider = ({ children, config, hooks }: ApiProviderProps) => {
+  const coreConfig = useMemo(() => {
+    return {
+      fetcher: config,
+      hooks,
+    };
+  }, [config, hooks]);
+
+  return (
+    <ApiContext.Provider value={coreConfig}>{children}</ApiContext.Provider>
+  );
 };
 
 //hook for accesing context

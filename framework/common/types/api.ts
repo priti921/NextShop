@@ -15,3 +15,9 @@ export interface ApiConfig {
   apiUrl: string;
   fetch<T>(options: ApiFetcherOptions): Promise<ApiFetcherResults<T>>; //returns Promise of type ApiFetcherResults of type T(type of param that gets passed in fetch function)
 }
+
+export interface ApiHooks {
+  cart: {
+    useAddItem: any;
+  };
+}
