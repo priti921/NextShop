@@ -18,8 +18,7 @@ const ProductView: FC<Props> = ({ product }) => {
   const [choices, setChoices] = useState<Choices>({});
   const { openSidebar } = useUI();
 
-  const api = useApiProvider();
-  console.log(api);
+  const { hooks, fetcher } = useApiProvider();
 
   //get variant if it exists in the product
   const variant = getVariant(product, choices);

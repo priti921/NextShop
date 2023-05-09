@@ -1,7 +1,11 @@
-import { handler } from "@framework/cart/use-all-item";
+import { useHook } from "@common/utils/hook-hook";
 //hook that calls a hook(which returns a object with output key with modified value) and returns
 const useAddItem = () => {
-  return handler.useHook();
+  const hook = useHook((hooks) => {
+    return hooks.cart.useAddItem;
+  });
+
+  return hook.useHook();
 };
 
 export default useAddItem;
