@@ -24,7 +24,7 @@ const ProductView: FC<Props> = ({ product }) => {
   const addItem = useAddItem();
 
   //adds to cart on call
-  const addToCart = () => {
+  const addToCart = async () => {
     try {
       const item = {
         productId: String(product.id),
@@ -32,7 +32,7 @@ const ProductView: FC<Props> = ({ product }) => {
         variantOptions: variant?.options,
       };
       //passing item data
-      const log = addItem(item);
+      const log = await addItem(item);
       alert(JSON.stringify(log));
       openSidebar();
     } catch {}

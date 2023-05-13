@@ -8,15 +8,12 @@ export const useHook = (fn: (apiHooks: ApiHooks) => any) => {
 };
 
 export const useMutationHook = (hook: MutationHook) => {
+  const { fetcher } = useApiProvider();
   return hook.useHook({
     fetch: (input: any) => {
       return hook.fetcher({
         input,
-        fetch: async (input: any) => {
-          return {
-            data: JSON.stringify(input) + "_MODIFIED",
-          };
-        },
+        fetch: fetcher,
       });
     },
   });
